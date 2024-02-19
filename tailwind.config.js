@@ -14,6 +14,8 @@ module.exports = {
         red: "#E30000",
         light: "#fff",
         transparent: "transparent",
+        purplebg: '#391959',
+        purple2: '#3C0673',
       },
       screens: {
         sm: { max: "767px" },

@@ -8,7 +8,7 @@ import 'semantic-ui-css/semantic.min.css'
 function App() {
   const queryClient = new QueryClient();
   return (
-    <div className="w-full">
+    <div className="w-full  bg-purplebg">
       <ToastContainer />
       <QueryClientProvider client={queryClient}>
         <AuthContextProvider>

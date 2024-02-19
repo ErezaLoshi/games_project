@@ -5,7 +5,7 @@ const GamesList = () => {
   const {games: games} = useGamesContext()
   
   return (
-    <div className="!mt-2 grid grid-cols-4 gap-8">
+    <div className="mt-5 grid grid-cols-2 gap-4">
         {
         games.length !== 0 ? 
         games.map(game => <GameCard game={game} key={game._id} />)
