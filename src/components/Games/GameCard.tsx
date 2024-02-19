@@ -32,29 +32,41 @@ const GameCard = ({game}: Props) => {
       }).catch(err => {console.log(err)})
     }
 
-    return <div className="ui card">
-    <Featured id={game._id} featured={game.featured}/>
-    <div className="image">
-      <span className="ui green label ribbon">{game.price}</span>
-      <ReactImageFallback
-        src={game.img}
-        fallbackImage={'https://placehold.co/400'}
-        initialImage="loader.gif"
-        alt="cool image should be here"
-        className="my-image" />
-    </div>
+    return(
+    <div style={{paddingLeft: "3.0rem"}}>
+      <div className="ui card" style={{ width: "90%" }}>
+      <div className="content " >
+        <div className="ui items ">
+            <div className="item">
+                <Featured id={game._id} featured={game.featured}/>
+                <div className="ui image">
+                  <ReactImageFallback
+                    src={game.img}
+                    fallbackImage={'https://placehold.co/200/400'}
+                    initialImage="loader.gif"
+                    alt="image should be here"
+                    className="my-image" />
+                </div>
 
-    <div className="content">
-      <span className="header">
-        {game.title}
-      </span>
-      <div className="meta">
-        <i className="icon users" /> {game.developer}
+    <div className="content" style={{padding: "1.5rem"}}>
+      <span className="ui header large">{game.title}</span>
+          <div className="meta">
+      <span className="cinema">Release date: {game.date}</span>
+          </div>
+          <div className="extra">
+              <div className="ui label"><i className="user icon"></i> {game.developer}</div>
+               <div className="ui green label"> {game.price}$</div>
+          </div>
+
+          <div style={{paddingTop: "1rem"}}>
+          <button onClick={() => {selectGame(game._id)}} className='ui small button' type="button">Edit</button>
+      <button onClick={deleteGameHandler} className='ui small button' type="button">Delete</button>
+          </div>
        
-        <span className="right floated">
-          <i className="icon wait right" /> {game.date}
-        </span>
       </div>
+      </div>
+      </div>
+      </div> 
       <div className=" extra content ">
         
      <span className="ui olive label"> {game.genre1}</span>
@@ -63,11 +75,11 @@ const GameCard = ({game}: Props) => {
      <span className="ui teal label"> {game.genre4}</span>
         
     </div>
-      <button onClick={() => {selectGame(game._id)}} className='ui button' type="button">Edit</button>
-      <button onClick={deleteGameHandler} className='ui button' type="button">Delete</button>
+      
     </div>
   </div>
-}
+
+)}
 
 // .propTypes
 
