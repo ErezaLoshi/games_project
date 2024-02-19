@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { LoginForm } from "../../components/LoginForm/LoginForm";
-import { FilmsContext } from "../../lib/context/FilmsContext/FilmsContext";
+import { GamesContext } from "../../lib/context/GamesContext/GamesContext";
 
 export const Login = () => {
   return <LoginForm />;

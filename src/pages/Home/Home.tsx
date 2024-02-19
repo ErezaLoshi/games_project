@@ -1,21 +1,20 @@
-import _sortBy from "lodash/sortBy"
-import _orderBy from "lodash/orderBy"
 
-import FilmsList from "../../components/Films/FilmsList";
-import FilmsContextProvider from "../../lib/context/FilmsContext/FilmsContextProvider";
-import FilmForm from "../../components/FilmForm/FilmForm";
-import { useEffect } from "react";
-import { allFilms } from "../../api/Films/films.client";
+import GamesList from "../../components/Games/GamesList";
+import GameForm from "../../components/GameForm/GameForm";
+
+import { allGames} from "../../api/Games/games.client";
+import GamesContextProvider from "../../lib/context/GamesContext/GamesContextProvider";
+
 
 export const Home = () => {
 
   return (
-    <FilmsContextProvider>
+    <GamesContextProvider>
       <div className="ui container mt-6">
-        <FilmForm />
+        <GameForm />
         <hr />
-        <FilmsList />
+        <GamesList />
       </div>
-    </FilmsContextProvider>
+    </GamesContextProvider>
   );
 };
