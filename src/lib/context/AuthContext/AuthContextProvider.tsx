@@ -21,24 +21,25 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   }, []);
 
   const authenticate = async () => {
-    const userStorageDetails = await localforage.getItem<string>(LOCAL_STORAGE_KEY);
+    const userStorageDetails = localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (!userStorageDetails) {
       setLoading(false);
       setUser(undefined);
       return;
     }
+    setUser({token: userStorageDetails})
     axios.defaults.headers.common.Authorization = `Bearer ${userStorageDetails}`;
 
-    try {
-      const res = await getUserDetails();
-      setUser(res.data);
-    } catch (err: any) {
-      setError(err);
-      localforage.removeItem(LOCAL_STORAGE_KEY);
-    } finally {
-      setLoading(false);
-    }
+    // try {
+    //   // const res = await getUserDetails();
+    //   // setUser(res.data);
+    // } catch (err: any) {
+    //   setError(err);
+    //   localforage.removeItem(LOCAL_STORAGE_KEY);
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   const login = (token: string) => {
@@ -49,7 +50,8 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 
   const logout = async () => {
     setUser(undefined);
-    localforage.removeItem(LOCAL_STORAGE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+
   };
 
   // if (loading) return <LoadingScreen />;

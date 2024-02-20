@@ -9,7 +9,8 @@ interface Props {
 }
 
 export const RouteWrapper = ({ routeType, children }: Props) => {
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated,user } = useAuthContext();
+console.log({user,isAuthenticated});
 
   // const userHasRequiredRole =
   //   user &&

@@ -8,16 +8,19 @@ import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
 import { login } from "../../api/User/user.client";
 import { toast } from "react-toastify";
 import { PasswordField } from "../shared/PasswordField/PasswordField";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const authCtx = useAuthContext();
+  const navigate= useNavigate()
 
   const formik = useLoginFormik({
     onSubmit: async (values, formikHelpers) => {
       try {
         const res = await login(values);
         authCtx.login(res.data.token);
-        formikHelpers.resetForm();
+         navigate('/')
+        // formikHelpers.resetForm();
       } catch (error: any) {
         toast.error(error);
       }

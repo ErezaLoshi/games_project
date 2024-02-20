@@ -1,21 +1,14 @@
 
 import GamesList from "../../components/Games/GamesList";
-import GameForm from "../../components/GameForm/GameForm";
-
-
 import GamesContextProvider from "../../lib/context/GamesContext/GamesContextProvider";
 import Banner from "../../components/Banner/Banner";
-import TabButton from "../../components/TabButton";
-import { useState } from "react";
-import { EXAMPLES } from "../../components/data";
 import { Link } from "react-router-dom";
 import Button from "../../components/shared/Button/Button";
-
-
-
+import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 
 export const Home = () => {
 
+  const {logout}= useAuthContext()
 
   return (
     <GamesContextProvider>
@@ -27,6 +20,10 @@ export const Home = () => {
         <Link to="/add-game">
           Add Game
           </Link>
+          </Button>
+
+          <Button onClick={logout}>
+         Log Out
           </Button>
         <GamesList />
        
