@@ -7,6 +7,7 @@ import { Home } from "../pages/Home/Home";
 import { Login } from "../pages/Login/Login";
 import { Register } from "../pages/Register/Register";
 import { ResetPassword } from "../pages/ResetPassword/ResetPassword";
+import AddGame from "../pages/AddGame/AddGame";
 
 export enum RouteType {
   PUBLIC,
@@ -18,8 +19,24 @@ export const appRoutes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <RouteWrapper routeType={RouteType.PUBLIC}>
+      <RouteWrapper routeType={RouteType.PRIVATE}>
         <Home />
+      </RouteWrapper>
+    ),
+  },
+  {
+    path: "add-game",
+    element: (
+      <RouteWrapper routeType={RouteType.PRIVATE}>
+        <AddGame />
+      </RouteWrapper>
+    ),
+  },
+  {
+    path: "update-game/:gameid",
+    element: (
+      <RouteWrapper routeType={RouteType.PUBLIC}>
+        <AddGame />
       </RouteWrapper>
     ),
   },

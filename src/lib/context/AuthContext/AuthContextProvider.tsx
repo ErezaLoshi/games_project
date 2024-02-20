@@ -9,11 +9,11 @@ interface AuthContextProviderProps {
   children: React.ReactNode | null;
 }
 
-export const LOCAL_STORAGE_KEY = "EXAMPLE";
+export const LOCAL_STORAGE_KEY = "USER_TOKEN";
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState<{token:string} | undefined>(undefined);
   const [error, setError] = useState<any>();
 
   useEffect(() => {
@@ -41,10 +41,10 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     }
   };
 
-  const login = (user: User) => {
-    setUser(user as any);
-    axios.defaults.headers.common.Authorization = `Bearer ${user.token}`;
-    localforage.setItem(LOCAL_STORAGE_KEY, user.token);
+  const login = (token: string) => {
+    setUser({token});
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    localStorage.setItem(LOCAL_STORAGE_KEY, token);
   };
 
   const logout = async () => {

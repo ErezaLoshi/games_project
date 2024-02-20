@@ -5,6 +5,7 @@ import { AddGameRequest, GameRespnseType } from "../../api/Games/games.types";
 import { deleteGameApi } from "../../api/Games/games.client";
 import { useState } from "react";
 import Modal from "./../shared/Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
     game: GameRespnseType,
@@ -27,7 +28,9 @@ export interface GameInterface{
 
 const GameCard = ({game}: Props) => {
     const {selectGame, deleteGame} = useGamesContext()
-    const [showDescription, setShowDescription] = useState(false);
+
+    const navigate= useNavigate()
+    // const [showDescription, setShowDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
 
@@ -39,9 +42,9 @@ const GameCard = ({game}: Props) => {
       setShowModal(false);
     }
 
-  const handleToggleDescription = () => {
-        setShowDescription(!showDescription)
-}
+//   const handleToggleDescription = () => {
+//         setShowDescription(!showDescription)
+// }
 
     const deleteGameHandler = () => {
       deleteGameApi(game._id).then(() => {
@@ -59,7 +62,7 @@ const GameCard = ({game}: Props) => {
                 <div className="ui image">
                   <ReactImageFallback
                     src={game.img}
-                    fallbackImage={'https://placehold.co/200/400'}
+                    fallbackImage={'https://placehold.co/200x400'}
                     initialImage="loader.gif"
                     alt="image should be here"
                     className="my-image" />
@@ -95,7 +98,7 @@ const GameCard = ({game}: Props) => {
                       )}  */}
                  {/* </div> */}
           <div style={{paddingTop: "0.5rem"}}>
-          <button onClick={() => {selectGame(game._id)}} className='ui small button' type="button">Edit</button>
+          <button onClick={() => {navigate(`update-game/${game._id}`)}} className='ui small button' type="button">Edit</button>
       <button onClick={deleteGameHandler} className='ui small button' type="button">Delete</button>
           </div>
       </div>

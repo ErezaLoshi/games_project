@@ -16,7 +16,7 @@ export const LoginForm = () => {
     onSubmit: async (values, formikHelpers) => {
       try {
         const res = await login(values);
-        authCtx.login(res.data);
+        authCtx.login(res.data.token);
         formikHelpers.resetForm();
       } catch (error: any) {
         toast.error(error);

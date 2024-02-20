@@ -22,7 +22,7 @@ export const RouteWrapper = ({ routeType, children }: Props) => {
   if (!isAuthenticated && routeType === RouteType.GUEST) return children;
 
   if (!isAuthenticated && routeType === RouteType.PRIVATE) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

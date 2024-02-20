@@ -6,6 +6,7 @@ import { randomId } from "../../helpers/randomId";
 import { GameInterface } from "../../../components/Games/GameCard";
 import { allGames } from "../../../api/Games/games.client";
 import { GameRespnseType } from "../../../api/Games/games.types";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     children: React.ReactNode;
@@ -17,6 +18,7 @@ const GamesContextProvider = ({children}: Props) => {
     const [games, setGames] = useState<GameRespnseType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>();
+    const navigate= useNavigate()
 
     const [selectedGame, setSelectedGame] = useState<GameRespnseType | undefined>();
 
@@ -46,7 +48,7 @@ const GamesContextProvider = ({children}: Props) => {
 
   const updateGame = (id: string, form: FormDataType) => {
     setGames(sortGames(games.map(game => game._id === id ? {...game, ...form} : game)))
-    setSelectedGame(undefined)
+    // navigate('/')
   }
 
   const deleteGame = (id: string) => {

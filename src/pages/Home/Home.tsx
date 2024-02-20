@@ -8,22 +8,13 @@ import Banner from "../../components/Banner/Banner";
 import TabButton from "../../components/TabButton";
 import { useState } from "react";
 import { EXAMPLES } from "../../components/data";
+import { Link } from "react-router-dom";
+import Button from "../../components/shared/Button/Button";
 
-// interface Props{
-//   components: dataInt
-// }
 
-// interface dataInt{
-//       title: string,
-//       description:string
-//   }
+
 
 export const Home = () => {
-// const [selectedTopic, setSelectedTopic]= useState<Props>('')
-
-// function handleSelect(selectedButton:Props){
-// setSelectedTopic(selectedButton);
-
 
 
   return (
@@ -31,23 +22,14 @@ export const Home = () => {
       <>
         {/* <Banner/> */}
         <div className="ui container mt-6 ">
-        <GameForm />
-        <hr />
+
+          <Button>
+        <Link to="/add-game">
+          Add Game
+          </Link>
+          </Button>
         <GamesList />
-        
-        {/* <section id="examples">
-           <h2>exmp</h2>
-           <menu>
-           <TabButton onSelect={()=>handleSelect('components')}>comps</TabButton>
-           <TabButton onSelect={()=>handleSelect('jsx')}>props</TabButton>
-           <TabButton onSelect={()=>handleSelect('props')}>lols</TabButton>
-           <TabButton onSelect={()=>handleSelect('state')}>o</TabButton>
-           </menu>
-           <div>
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-           </div>
-        </section> */}
+       
         </div>
 
       </>

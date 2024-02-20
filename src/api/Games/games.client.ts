@@ -1,10 +1,14 @@
 import { apiRequest } from "../Api";
-import { AddGameRequest, GamesRespnseType } from "./games.types";
+import { AddGameRequest, GameRespnseType, GamesRespnseType } from "./games.types";
 
 //funksionet me endpointa edhe metoda
 export const allGames = async () =>
   await apiRequest<{}, GamesRespnseType>({
     url: "api/games",
+  });
+export const getGameById = async (gameId:string) =>
+  await apiRequest<{}, {game: GameRespnseType}>({
+    url: `api/games/${gameId}`,
   });
 
 export const createGame = async (game: AddGameRequest) =>

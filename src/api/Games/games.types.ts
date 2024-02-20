@@ -4,7 +4,7 @@ export interface GameRespnseType {
   title: string;
   description: string;
   price: number;
-  img?: string;
+  img: string;
   developer: string;
   featured: boolean;
   date:string

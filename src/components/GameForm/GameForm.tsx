@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { createGame, editGame } from '../../api/Games/games.client';
+import { createGame, editGame, getGameById } from '../../api/Games/games.client';
 import { AddGameRequest, GameRespnseType } from '../../api/Games/games.types';
 import { useGamesContext } from '../../lib/context/GamesContext/GamesContext';
 import FormMessage from './FormMessage';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export interface FormDataType{
   title: string;
@@ -34,7 +35,12 @@ export interface ErrorFormDataType{
 }
 
 const GameForm = () => {
-  const {selectedGame} = useGamesContext()
+
+  // const {selectedGame} = useGamesContext()
+  const {gameid}= useParams()
+// const game= gameid ? getGameById(gameid) : null sbon
+
+
   const [formData, setFormData] = useState<AddGameRequest>({
     title: "",
     description: "",
@@ -49,26 +55,41 @@ const GameForm = () => {
     genre4: "",
   })
 
+const navigate= useNavigate()
+// const location=useLocation()
+
   const [errors, setErrors] = useState<{[key:string]: string}>();
 
-  useEffect(() => {
-    setFormData({
-      title: selectedGame?.title ?? '',
-      description: selectedGame?.description ?? '',
-      developer: selectedGame?.developer ?? '',
-      img: selectedGame?.img ?? '',
-      price: selectedGame?.price ?? 0,
-      featured: selectedGame?.featured ?? false,
-      date: selectedGame?.date ?? '',
-      genre1: selectedGame?.genre1 ?? '',
-      genre2: selectedGame?.genre2 ?? '',
-      genre3: selectedGame?.genre3 ?? '',
-      genre4: selectedGame?.genre4 ?? '',
+  // useEffect(() => {
+  //   setFormData({
+  //     title: selectedGame?.title ?? '',
+  //     description: selectedGame?.description ?? '',
+  //     developer: selectedGame?.developer ?? '',
+  //     img: selectedGame?.img ?? '',
+  //     price: selectedGame?.price ?? 0,
+  //     featured: selectedGame?.featured ?? false,
+  //     date: selectedGame?.date ?? '',
+  //     genre1: selectedGame?.genre1 ?? '',
+  //     genre2: selectedGame?.genre2 ?? '',
+  //     genre3: selectedGame?.genre3 ?? '',
+  //     genre4: selectedGame?.genre4 ?? '',
 
-    })
-  }, [selectedGame])
+  //   })
+  // }, [selectedGame])
 
   const {addNewGame, updateGame} = useGamesContext()
+
+
+  useEffect(()=>{
+
+    if(gameid){
+      getGameById(gameid).then(response=>{
+        const {game} = response.data
+        setFormData(game)
+      })
+    }
+
+  },[])
 
   const handleStringInput = (event: React.FormEvent<HTMLInputElement>) => {
     const {name, value} = event.currentTarget;
@@ -96,8 +117,8 @@ const GameForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-      if(selectedGame){
-        editGame(selectedGame?._id, formData).then(
+      if(gameid){
+        editGame(gameid, formData).then(
           res => {
             setErrors({})
             setFormData({
@@ -113,7 +134,8 @@ const GameForm = () => {
               genre3: "",
               genre4: "",
             })
-            updateGame(selectedGame?._id, res.data.game)
+            updateGame(gameid, res.data.game)
+            navigate('/')
           }
         ).catch(err => setErrors(err?.response.data.errors))
       }else{
@@ -133,11 +155,12 @@ const GameForm = () => {
             genre4: "",
           })
           addNewGame(response?.data?.game)
+          navigate('/')
         }).catch(err => {
           console.log({err})
           setErrors(err?.response.data.errors)
         })
-      }
+     }
   }
 
   return (
@@ -173,7 +196,7 @@ const GameForm = () => {
         </div>
         <div className='field'>
           <label>Game Date</label>
-          <input onChange={handleStringInput} value={formData.date} type='text' name="date" id="date" placeholder='Game date' />
+          <input onChange={handleStringInput} value={formData.date} type='date' name="date" id="date" placeholder='Game date' />
           <FormMessage error={errors?.date} />
         </div>
         <div className='ui grid col 2' style={{paddingTop:"1.5rem"}}>
@@ -201,7 +224,7 @@ const GameForm = () => {
         </div>
 
         <button className='ui button' type='submit' style={{marginTop:"1rem"}}>
-          {selectedGame ? 'Update' : 'Save'}
+          {gameid ? 'Update' : 'Save'}
         </button>
     </form>
   )
