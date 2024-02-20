@@ -13,11 +13,16 @@ export const RegisterForm = () => {
     onSubmit: async (values, formikHelpers) => {
       try {
         await register(values);
+        toast.success("Registered successfully");
         formikHelpers.resetForm();
       } catch (error: any) {
         toast.error(error);
-      }
-    },
+        console.log({error: Object.keys(error.response.data.errors)})
+
+        Object.keys(error.response.data.errors).map(key => {
+          toast.error(error.response.data.errors[key] ?? "Something went wrong")
+        })
+      }}
   });
   return (
     <div className="LoginForm">

@@ -17,14 +17,17 @@ export const LoginForm = () => {
   const formik = useLoginFormik({
     onSubmit: async (values, formikHelpers) => {
       try {
-        const res = await login(values);
+        // qitu e kena lidhjen me server ku ja dergojna credentials
+        const res = await login(values)
+        toast.success('Logged in succesfully')
         authCtx.login(res.data.token);
          navigate('/')
+         }
+        catch(error:any){   
+          toast.error(error.response.data.errors.global)    
+        }
         // formikHelpers.resetForm();
-      } catch (error: any) {
-        toast.error(error);
-      }
-    },
+    }
   });
   const handleFormikChange = (name: string, value: string | number) => {
     formik.setFieldValue(name, value);
