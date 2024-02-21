@@ -13,8 +13,8 @@ export const Home = () => {
   return (
     <GamesContextProvider>
       <>
-        {/* <Banner/> */}
-        <div className="ui container mt-6 ">
+        <Banner/>
+        <div className="ui container ">
 
           <Button>
         <Link to="/add-game">

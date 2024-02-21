@@ -33,7 +33,7 @@ const handleFeatured=()=>{
 
   return (
     <span onClick={handleFeatured} className="ui right corner label">
-      <i className={`star icon ${featured ? 'yellow' : 'empty'}`} />
+      <i className={`heart icon ${featured ? 'red' : 'empty'}`} />
     </span>
   )
 }

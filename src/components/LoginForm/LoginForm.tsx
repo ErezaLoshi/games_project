@@ -35,12 +35,13 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="LoginForm">
-      <form className="mb-3  w-[300px]" onSubmit={formik.handleSubmit}>
-        <h2 className="mt-8 mb-12 text-4xl font-bold text-left text-black md:mt-0">Sign in</h2>
+    
+    <div className="LoginForm" >
+      <form className="mb-3  w-[400px]" onSubmit={formik.handleSubmit}>
+        <h2 className="mt-8 mb-12 text-5xl font-bold text-left text-black md:mt-0">Sign in</h2>
 
         <Input
-          className="mb-2.5"
+          className="mb-3.5"
           id="email"
           name="email"
           placeholder="Email"
@@ -52,7 +53,7 @@ export const LoginForm = () => {
         />
 
         <PasswordField
-          className="mb-2.5"
+          className="mb-3.5"
           id="password"
           name="password"
           placeholder="******"

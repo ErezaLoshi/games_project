@@ -3,9 +3,10 @@ import Featured from "./Featured";
 import ReactImageFallback from "react-image-fallback";
 import { AddGameRequest, GameRespnseType } from "../../api/Games/games.types";
 import { deleteGameApi } from "../../api/Games/games.client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "./../shared/Modal/Modal";
 import { useNavigate } from "react-router-dom";
+
 
 interface Props{
     game: GameRespnseType,
@@ -27,6 +28,7 @@ export interface GameInterface{
 }
 
 const GameCard = ({game}: Props) => {
+  
     const {selectGame, deleteGame} = useGamesContext()
 
     const navigate= useNavigate()
@@ -55,7 +57,7 @@ const GameCard = ({game}: Props) => {
     return(
     <div style={{paddingLeft: "3.0rem"}}>
       <div className="ui card" style={{ width: "90%" }}>
-      <div className="content " >
+      <div  className="content " >
         <div className="ui items ">
             <div className="item">
                 <Featured id={game._id} featured={game.featured}/>

@@ -29,8 +29,8 @@ const Input = (props: InputProps) => {
 
   return (
     <div className={cs("relative w-full", className)}>
-      <div className="relative flex">
-        <label htmlFor={id} className={hiddenLabel ? "sr-only" : `text-sm font-medium ${labelClassName}`}>
+      <div className="relative flex ">
+        <label htmlFor={id} className={hiddenLabel ? "sr-only" : `text-sm  font-medium ${labelClassName}`}>
           {label}
         </label>
         {/* {icon && (
@@ -40,11 +40,12 @@ const Input = (props: InputProps) => {
           />
         )} */}
         <input
+       
           id={id}
           className={cs(
-            "bg-white leading-4  w-full  px-5 py-2.5 border-lightGray border-2 placeholder-gray text-xs  text-black rounded-xl focus:outline-none focus:z-10 ",
+            "bg-white leading-4  w-full  px-5 py-3 border-lightGray border-2 placeholder-gray text-xs  text-black rounded-xl focus:outline-none focus:z-10 ",
             inputClassName,
-            { "border-red-400": !!error },
+            { "border-red-400": !!error },  
           )}
           {...rest}
         />

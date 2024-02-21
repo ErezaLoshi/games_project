@@ -27,7 +27,7 @@ export const RegisterForm = () => {
   return (
     <div className="LoginForm">
       <form className="mb-3" onSubmit={formik.handleSubmit}>
-        <h2 className="mt-8 mb-12 text-4xl font-bold text-left text-black md:mt-0">Sign up</h2>
+        <h2 className="mt-8 mb-12 text-5xl font-bold text-left text-black md:mt-0">Sign up</h2>
         {/* <Input
           className="mb-2.5"
           id="firstName"
@@ -91,9 +91,9 @@ export const RegisterForm = () => {
         <Button className="min-w-full uppercase rounded-md" type="submit" loading={formik.isSubmitting}>
           Sign in
         </Button>
-        <span className="text-blue underline mb-[28px] block">
+        {/* <span className="text-grey underline mb-[28px] block">
           <NavLink to={"/login"}>Already have an account?</NavLink>
-        </span>
+        </span> */}
       </form>
     </div>
   );

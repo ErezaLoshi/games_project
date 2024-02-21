@@ -11,11 +11,12 @@ const desc=reactDescriptions[getRandomInt(1)];
 
 const Banner = ()=>{
   
+  
   return(
     <div className='banner'>
       <div className='banner-info'>
         <h1>Get {desc} about the games you like</h1>
-        <a href="#services">Explore</a>
+        <a href="#">Explore</a>
 
       </div>
     </div>
