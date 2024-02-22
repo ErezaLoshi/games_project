@@ -5,7 +5,7 @@ const GamesList = () => {
   const {games: games} = useGamesContext()
   
   return (
-    <div className="mt-5 grid grid-cols-2 gap-8">
+    <div className="mt-8 grid grid-cols-2 gap-5" style={{height:"90vh"}}>
       {/* mt-5 grid grid-cols-2 gap-4 */}
         {
         games.length !== 0 ? 

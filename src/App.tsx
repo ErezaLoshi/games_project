@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const queryClient = new QueryClient();
   return (
-    <div className="w-full  bg-purplebg">
+    <div className="w-full bg-purplebg">
       <ToastContainer />
       <QueryClientProvider client={queryClient}>
         <AuthContextProvider>

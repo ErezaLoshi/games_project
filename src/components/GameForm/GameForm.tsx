@@ -164,7 +164,7 @@ const navigate= useNavigate()
   }
 
   return (
-    <form onSubmit={handleSubmit} className='ui form mb-6'>
+    <form onSubmit={handleSubmit} className='ui form w-[830px]' >
         <div className='field'>
           <label>Game Title</label>
           <input onChange={handleStringInput} value={formData.title} type='text' name="title" id="title" placeholder='Game title' />

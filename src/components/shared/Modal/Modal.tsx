@@ -15,7 +15,7 @@ export default function Modal(props: Props) {
   return (
     <>
       <Transition appear show={props.showModal} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={props.onClose}>
+        <Dialog as="div" className="relative z-10 overflow-y: auto" onClose={props.onClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -27,7 +27,7 @@ export default function Modal(props: Props) {
           >
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
-
+         
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child

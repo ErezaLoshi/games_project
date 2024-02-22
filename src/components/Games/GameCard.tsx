@@ -3,7 +3,7 @@ import Featured from "./Featured";
 import ReactImageFallback from "react-image-fallback";
 import { AddGameRequest, GameRespnseType } from "../../api/Games/games.types";
 import { deleteGameApi } from "../../api/Games/games.client";
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import Modal from "./../shared/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 
@@ -42,6 +42,7 @@ const GameCard = ({game}: Props) => {
   
     const closeModal = () => {
       setShowModal(false);
+     
     }
 
 //   const handleToggleDescription = () => {
@@ -52,6 +53,11 @@ const GameCard = ({game}: Props) => {
       deleteGameApi(game._id).then(() => {
         deleteGame(game._id)
       }).catch(err => {console.log(err)})
+    }
+    const preventScroll = (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault()
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
     }
 
     return(
@@ -81,24 +87,15 @@ const GameCard = ({game}: Props) => {
           </div>
           <div className="extra content m-0">
          
-         <button onClick={openModal} className="ui button" type="button">
+          <button  onClick={openModal} className="ui button" type="button">
           Description
          </button>
-         <Modal showModal={showModal} onClose={closeModal}>
-           
-           <p>{game.description}</p>
+         <Modal  showModal={showModal} onClose={closeModal}>
+           <div onClick={preventScroll}>
+             <p>{game.description}</p>
+           </div>
          </Modal>
        </div>
-            {/* <div className="ui tiny label description">
-                  <button className="ui tiny basic green button" onClick={handleToggleDescription}>
-                    <i className={`eye icon ${showDescription ? 'slash' : ''}`} /> {showDescription ? 'Hide' : 'Show'} More
-                       </button> */}
-                        {/* {showDescription && (
-                     <div className="ui tiny segment">
-                      <p>{game.description}</p>
-                     </div>
-                      )}  */}
-                 {/* </div> */}
           <div style={{paddingTop: "0.5rem"}}>
           <button onClick={() => {navigate(`update-game/${game._id}`)}} className='ui small button' type="button">Edit</button>
       <button onClick={deleteGameHandler} className='ui small button' type="button">Delete</button>

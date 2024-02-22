@@ -15,16 +15,18 @@ export const Home = () => {
       <>
         <Banner/>
         <div className="ui container ">
+        <div className="flex gap-3 mt-9 ">
 
           <Button>
-        <Link to="/add-game">
+        <Link to="/add-game" className="text-white hover:text-white" >
           Add Game
           </Link>
           </Button>
 
-          <Button onClick={logout}>
+          <Button onClick={logout} className="">
          Log Out
           </Button>
+          </div>
         <GamesList />
        
         </div>
